@@ -6,10 +6,14 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public interface Server {
-	static final String TERMINATE = "TERMINATE";
-	static final String TCP = "TCP";
-	static final ArrayList<ServerThread> servers = new ArrayList<ServerThread>();
+public abstract class Server {
+	private static final String TERMINATE = "TERMINATE";
+	private static final String TCP = "TCP";
+	private static final ArrayList<ServerThread> servers = new ArrayList<ServerThread>();
+	
+	private Server() {
+		
+	}
 	
 	public static void createServers() {
 		String protocol = "";
@@ -26,7 +30,7 @@ public interface Server {
 		
 	}
 	
-	static String getProtocol() {
+	private static String getProtocol() {
 		String protocol = "";
 		System.out.println("Please select Protocol:" + Server.getProtocols());	
 		try {
@@ -37,7 +41,7 @@ public interface Server {
 		return protocol;
 	}
 	
-	static String getProtocols() {
+	private static String getProtocols() {
 		String servers = "";
 		for(Field field : Server.class.getDeclaredFields()) {
 			servers += "\n" + field.getName().toString();
@@ -46,7 +50,7 @@ public interface Server {
 		return servers;
 	}
 	
-	static void startServer(String protocol) {
+	private static void startServer(String protocol) {
 		if(!protocol.equals("")){
 			int serverID = servers.size() + 1;
 			ServerThread server = null;
