@@ -23,12 +23,6 @@
 hs_err_pid*
 
 /target/
-<<<<<<< Upstream, based on f30377fa75311250ddd6dc5f795963eb7d3e2f3a
 /.project
 /.classpath
 /.settings/
-=======
-/.settings/
-/.classpath
-/.project
->>>>>>> d3b8080 Server became class. Project files corrections.
