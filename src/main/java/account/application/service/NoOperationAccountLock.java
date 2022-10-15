@@ -1,7 +1,7 @@
-package servers.account.application.service;
+package account.application.service;
 
-import servers.account.application.port.out.AccountLock;
-import servers.account.domain.Account;
+import account.application.port.out.AccountLock;
+import account.domain.Account;
 
 class NoOperationAccountLock implements AccountLock {
 

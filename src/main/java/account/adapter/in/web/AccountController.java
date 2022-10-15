@@ -1,4 +1,4 @@
-package servers.account.adapter.in.web;
+package account.adapter.in.web;
 
 import java.lang.reflect.Field;
 

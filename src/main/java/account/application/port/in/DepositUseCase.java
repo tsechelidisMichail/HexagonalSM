@@ -1,4 +1,4 @@
-package servers.account.application.port.in;
+package account.application.port.in;
 
 public interface DepositUseCase {
 	String deposit(DepositCommandData command);

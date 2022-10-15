@@ -1,6 +1,6 @@
-package servers.account.adapter.out.persistense;
+package account.adapter.out.persistense;
 
-import servers.account.domain.Account;
+import account.domain.Account;
 
 class UpdateAccountQuery {
 

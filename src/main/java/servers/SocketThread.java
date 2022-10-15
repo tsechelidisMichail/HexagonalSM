@@ -3,7 +3,7 @@ package servers;
 import java.io.*;
 import java.net.*;
 
-import servers.account.adapter.in.web.AccountController;
+import account.adapter.in.web.AccountController;
 
 final class SocketThread extends Thread
 {

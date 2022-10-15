@@ -1,4 +1,4 @@
-package servers.account.domain;
+package account.domain;
 
 public class Account {
 	private int deposit;
