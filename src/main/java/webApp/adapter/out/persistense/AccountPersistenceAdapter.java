@@ -5,7 +5,7 @@ import webApp.application.port.out.UpdateAccount;
 import webApp.domain.Account;
 
 public class AccountPersistenceAdapter implements LoadAccount, UpdateAccount{
-	private GetAccountQuery getAccountQuery = new GetAccountQuery();
+	private LoadAccountQuery getAccountQuery = new LoadAccountQuery();
 	private UpdateAccountQuery updateAccountQuery = new UpdateAccountQuery();
 	
 	@Override
@@ -14,8 +14,8 @@ public class AccountPersistenceAdapter implements LoadAccount, UpdateAccount{
 	}
 
 	@Override
-	public void updateAccount(Account account) {
-		updateAccountQuery.updateAccount(account);	
+	public boolean updateAccount(Account account) {
+		return updateAccountQuery.updateAccount(account);	
 	}
 	
 }

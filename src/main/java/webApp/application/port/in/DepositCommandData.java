@@ -7,7 +7,7 @@ public class DepositCommandData {
 		try{
 			depositMoney = Integer.parseInt(data[1]);
 		}catch(ArrayIndexOutOfBoundsException e) {
-			System.out.print(e);
+			e.printStackTrace();
 		}
 		//TODO: Here we translate data
 		

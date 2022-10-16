@@ -20,14 +20,13 @@ public class DepositService implements DepositUseCase{
 		Account account = loadAccount.loadAccount();
 		
 		accountLock.lockAccount(account);
-		if (!account.deposit(money)) {
+		if (account.deposit(money) && updateAccount.updateAccount(account)) {
+			int balanceResult = account.getDeposit();
 			accountLock.releaseAccount(account);
-			return "failed";
+			return "Success! " + balanceResult;
 		}
-		
-		updateAccount.updateAccount(account);
 		accountLock.releaseAccount(account);
-		return "success" + money;
+		return "failed";
 	}
 
 }

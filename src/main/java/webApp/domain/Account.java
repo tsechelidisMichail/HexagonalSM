@@ -9,7 +9,7 @@ public class Account {
 
 	public boolean deposit(int data) {
 		if(data>0) {
-			deposit = getDeposit() + data;
+			deposit += data;
 			return true;
 		}
 		return false;
