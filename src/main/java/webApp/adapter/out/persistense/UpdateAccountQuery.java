@@ -11,9 +11,8 @@ import webApp.domain.Account;
 class UpdateAccountQuery {
 
 	public boolean updateAccount(Account account) {
-	      try(Connection conn = DriverManager.getConnection(JdbcCreateTest.CONNECTION_URL, "root", "pass123")) {	
-		    	 
-	    	 Statement stmt = conn.createStatement();
+	      try(Connection conn = DriverManager.getConnection(JdbcCreateTest.CONNECTION_URL, "root", "pass123");
+	    		  Statement stmt = conn.createStatement();) {
 	    	 String query = "";
 	    	 query = "USE accounts;";
 	    	 stmt.executeUpdate(query);

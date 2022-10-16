@@ -10,9 +10,8 @@ public abstract class JdbcCreateTest {
 	
 	protected static void createDb() {
 
-	      try(Connection conn = DriverManager.getConnection(CONNECTION_URL, "root", "pass123")) {	
-	    	 
-	    	 Statement stmt = conn.createStatement();
+	      try(Connection conn = DriverManager.getConnection(CONNECTION_URL, "root", "pass123");
+	    		  Statement stmt = conn.createStatement();) {
 	    	 String query = "";
 	    	 query = "CREATE DATABASE accounts;";
 	    	 try{stmt.executeUpdate(query);}catch(Exception e) {}
