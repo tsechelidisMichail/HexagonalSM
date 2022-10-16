@@ -1,11 +1,11 @@
 package main;
 
-import servers.Server;
+import servers.ServerManager;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		Server.createServers();
-		Server.terminateServers();
+		ServerManager.createServers();
+		ServerManager.terminateServers();
 	}
 }

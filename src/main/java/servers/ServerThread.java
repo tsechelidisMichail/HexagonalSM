@@ -13,10 +13,16 @@ abstract class ServerThread extends Thread{
 	protected abstract String[] translateRequest(String request);
 	protected abstract String getDataTranslationMethod();
 	
-	protected ServerThread(int port, WebApp webApp) throws Exception{
-		this.webApp = webApp;
-		connectionSocket = new ServerSocket(port);
-		System.out.println("Server is listening to port: " + port);
+	protected ServerThread(int port, WebApp webApp) throws ServerAlreadyRunningException{
+		try {
+			this.webApp = webApp;
+			
+			connectionSocket = new ServerSocket(port);
+			System.out.println("Server is listening to port: " + port);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	protected void terminate() {
@@ -28,7 +34,9 @@ abstract class ServerThread extends Thread{
 			connectionSocket.close();
 			this.join();
 			
-		} catch (InterruptedException | IOException e) {
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -50,6 +58,17 @@ abstract class ServerThread extends Thread{
 	
 	public WebApp getWebApp() {
 		return webApp;
+	}
+	
+	class ServerAlreadyRunningException extends Exception { 
+	    /**
+		 * 
+		 */
+		private static final long serialVersionUID = 2876623959016730698L;
+
+		public ServerAlreadyRunningException(String errorMessage) {
+	        super(errorMessage);
+	    }
 	}
 	
 }

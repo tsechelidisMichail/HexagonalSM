@@ -21,10 +21,10 @@ public class BankAccount implements WebApp{
 	}
 		
 	public String getMethods() {
-		String response = "";
+		StringBuilder str = new StringBuilder();
 		for(Field field : BankAccount.class.getDeclaredFields()) {
-			response += field.getName().toString() + ",\n";
+			str.append(field.getName().toString() + ",\n");
 		}
-		return response;
+		return str.toString();
 	}
 }

@@ -6,12 +6,14 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public abstract class Server {
+import servers.ServerThread.ServerAlreadyRunningException;
+
+public abstract class ServerManager {
 	private static final String TERMINATE = "TERMINATE";
 	private static final String TCP = "TCP";
 	private static final ArrayList<ServerThread> servers = new ArrayList<ServerThread>();
 	
-	private Server() {
+	private ServerManager() {
 		
 	}
 	
@@ -32,7 +34,7 @@ public abstract class Server {
 	
 	private static String getProtocol() {
 		String protocol = "";
-		System.out.println("Please select Protocol:" + Server.getProtocols());	
+		System.out.println("Please select Protocol:" + ServerManager.getProtocols());	
 		try {
 			protocol = new BufferedReader(new InputStreamReader(System.in)).readLine();
 		} catch (IOException e) {
@@ -42,29 +44,32 @@ public abstract class Server {
 	}
 	
 	private static String getProtocols() {
-		String servers = "";
-		for(Field field : Server.class.getDeclaredFields()) {
-			servers += "\n" + field.getName().toString();
+		StringBuilder str = new StringBuilder();
+		for(Field field : ServerManager.class.getDeclaredFields()) {
+			str.append("\n");
+			str.append(field.getName());
 		}
-		servers = servers.replace("servers", "");
-		return servers;
+		return str.toString().replace("servers", "");
 	}
 	
 	private static void startServer(String protocol) {
-		if(!protocol.equals("")){
-			int serverID = servers.size() + 1;
-			ServerThread server = null;
-			if(protocol.equals(TCP)) {
-				try {
+		int serverID = servers.size() + 1;
+		ServerThread server = null;
+		try {
+			switch(protocol) {
+				case TCP:
 					server = new TcpServer(serverID);
-				} catch (Exception e) {
-					System.out.println("already running");
-				}
+					break;
+				default:
+					System.out.println("Selected: " + protocol);
+					break;
 			}
-			if(server!=null) {
-				server.start();
-				servers.add(server);
-			}
+			server.start();
+			servers.add(server);
+		}catch (ServerAlreadyRunningException e) {
+			System.err.println("already running");
+		}catch(NullPointerException e) {
+			System.err.println("This Server option doesn't exist.");
 		}
 	}
 	

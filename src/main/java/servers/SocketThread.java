@@ -26,7 +26,7 @@ final class SocketThread extends Thread
 			out = new PrintWriter(os,true);
 		}
 		catch (IOException e)	{		
-	 		System.out.println("I/O Error " + e);
+	 		System.err.println("I/O Error " + e);
 		}
 	}
 
@@ -38,15 +38,17 @@ final class SocketThread extends Thread
 		try {
 			while(!response.equals(EXIT)) {
 				out.println(server.getDataTranslationMethod());
+				
 				request = in.readLine();
 				String[] data = server.translateRequest(request);
+				
 				response = server.getWebApp().mapMethodController(data[0], data);
 				out.println(response);
 			}		
 			dataSocket.close();
 			System.out.println("Connection closed");
 		} catch (IOException e)	{		
-	 		System.out.println("I/O Error " + e);
+	 		System.err.println("I/O Error " + e);
 		}
 	}	
 }

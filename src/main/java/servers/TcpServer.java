@@ -6,14 +6,13 @@ class TcpServer extends ServerThread{
 	private static final int PORT = 1233;
 	
 	//TODO: This webApp may be selected in future.
-	public TcpServer(int id) throws Exception {
+	public TcpServer(int id) throws ServerAlreadyRunningException {
 		super(id+PORT, new BankAccount());
 	}
 
 	@Override
 	protected String[] translateRequest(String request) {
-		String[] data = request.split("@"); 
-		return data;
+		return request.split("@");
 	}
 
 	@Override
