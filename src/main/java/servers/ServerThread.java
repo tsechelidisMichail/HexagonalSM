@@ -43,14 +43,20 @@ abstract class ServerThread extends Thread{
 	
 	@Override
 	public void run() {
+		SocketThread sthread= null;
 		while (!connectionSocket.isClosed()) {
 			try {
 				dataSocket = connectionSocket.accept();
 				System.out.println("Received request from " + dataSocket.getInetAddress());
 
-				SocketThread sthread = new SocketThread(dataSocket, this);
+				sthread = new SocketThread(dataSocket, this);
 				sthread.start();
 			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				sthread.join();
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
