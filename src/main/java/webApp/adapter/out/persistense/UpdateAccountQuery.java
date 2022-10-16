@@ -1,6 +1,6 @@
-package account.adapter.out.persistense;
+package webApp.adapter.out.persistense;
 
-import account.domain.Account;
+import webApp.domain.Account;
 
 class UpdateAccountQuery {
 

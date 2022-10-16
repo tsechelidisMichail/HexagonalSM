@@ -8,10 +8,13 @@ abstract class ServerThread extends Thread{
 	private ServerSocket connectionSocket;
 	private Socket dataSocket;
 	
+	private WebApp webApp;
+	
 	protected abstract String[] translateRequest(String request);
 	protected abstract String getDataTranslationMethod();
 	
-	protected ServerThread(int port) throws Exception{
+	protected ServerThread(int port, WebApp webApp) throws Exception{
+		this.webApp = webApp;
 		connectionSocket = new ServerSocket(port);
 		System.out.println("Server is listening to port: " + port);
 	}
@@ -43,6 +46,10 @@ abstract class ServerThread extends Thread{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public WebApp getWebApp() {
+		return webApp;
 	}
 	
 }

@@ -1,7 +1,7 @@
-package account.application.service;
+package webApp.application.service;
 
-import account.application.port.out.AccountLock;
-import account.domain.Account;
+import webApp.application.port.out.AccountLock;
+import webApp.domain.Account;
 
 class NoOperationAccountLock implements AccountLock {
 

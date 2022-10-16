@@ -3,8 +3,6 @@ package servers;
 import java.io.*;
 import java.net.*;
 
-import account.adapter.in.web.AccountController;
-
 final class SocketThread extends Thread
 {
 	private Socket dataSocket;
@@ -18,8 +16,6 @@ final class SocketThread extends Thread
 
    	public SocketThread(Socket socket,ServerThread server)
    	{
-		this.dataSocket = socket;
-		
 		try {
 			this.dataSocket = socket;
 			this.server = server;
@@ -44,7 +40,7 @@ final class SocketThread extends Thread
 				out.println(server.getDataTranslationMethod());
 				request = in.readLine();
 				String[] data = server.translateRequest(request);
-				response = AccountController.mapMethodController(data[0], data);
+				response = server.getWebApp().mapMethodController(data[0], data);
 				out.println(response);
 			}		
 			dataSocket.close();

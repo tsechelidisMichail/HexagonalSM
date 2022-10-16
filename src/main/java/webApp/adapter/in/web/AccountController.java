@@ -1,16 +1,14 @@
-package account.adapter.in.web;
+package webApp.adapter.in.web;
 
 import java.lang.reflect.Field;
 
-public abstract class AccountController {
+import servers.WebApp;
+
+public class AccountController implements WebApp{
 	private static final String DEPOSIT = "DEPOSIT";
 	private static final String EXIT = "EXIT";
 	
-	private AccountController() {
-		
-	}
-	
-	public static String mapMethodController(String method, String[] data) {
+	public String mapMethodController(String method, String[] data) {
 		switch(method) {
 			case DEPOSIT:
 				DepositController controller = new DepositController();
@@ -18,11 +16,11 @@ public abstract class AccountController {
 			case EXIT:
 				return EXIT;
 			default:
-				return AccountController.getMethods();
+				return getMethods();
 		}
 	}
 		
-	private static String getMethods() {
+	public String getMethods() {
 		String response = "";
 		for(Field field : AccountController.class.getDeclaredFields()) {
 			response += field.getName().toString() + ",\n";

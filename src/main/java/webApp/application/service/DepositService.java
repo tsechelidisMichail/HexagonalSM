@@ -1,12 +1,12 @@
-package account.application.service;
+package webApp.application.service;
 
-import account.adapter.out.persistense.AccountPersistenceAdapter;
-import account.application.port.in.DepositCommandData;
-import account.application.port.in.DepositUseCase;
-import account.application.port.out.AccountLock;
-import account.application.port.out.LoadAccount;
-import account.application.port.out.UpdateAccount;
-import account.domain.Account;
+import webApp.adapter.out.persistense.AccountPersistenceAdapter;
+import webApp.application.port.in.DepositCommandData;
+import webApp.application.port.in.DepositUseCase;
+import webApp.application.port.out.AccountLock;
+import webApp.application.port.out.LoadAccount;
+import webApp.application.port.out.UpdateAccount;
+import webApp.domain.Account;
 
 public class DepositService implements DepositUseCase{
 	private final LoadAccount loadAccount = new AccountPersistenceAdapter();
