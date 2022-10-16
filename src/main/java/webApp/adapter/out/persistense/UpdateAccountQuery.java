@@ -11,7 +11,6 @@ import webApp.domain.Account;
 class UpdateAccountQuery {
 
 	public boolean updateAccount(Account account) {
-		account.getDeposit();
 	      try(Connection conn = DriverManager.getConnection(JdbcCreateTest.CONNECTION_URL, "root", "pass123")) {	
 		    	 
 	    	 Statement stmt = conn.createStatement();
@@ -19,7 +18,7 @@ class UpdateAccountQuery {
 	    	 query = "USE accounts;";
 	    	 stmt.executeUpdate(query);
 	    	 
-	    	 query = "INSERT INTO Account VALUES ("+ account.getDeposit() + ");";
+	    	 query = "UPDATE account SET Balance = "+ account.getDeposit() + " LIMIT 1;";
 	    	 stmt.executeUpdate(query);
 	    	 System.out.println("insert back deposit: " + account.getDeposit());
 	         return true;

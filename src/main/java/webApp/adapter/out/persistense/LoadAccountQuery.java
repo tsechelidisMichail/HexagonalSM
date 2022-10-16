@@ -20,7 +20,7 @@ class LoadAccountQuery {
 	    	 query = "USE accounts;";
 	    	 stmt.executeUpdate(query);
 	    	 
-	    	 query = "SELECT Balance FROM account LIMIT 1";
+	    	 query = "SELECT Balance FROM account;";
 	    	 ResultSet result = stmt.executeQuery(query);
 	    	 result.next();
 	    	 System.out.println("Database fetched: " + result.getInt("Balance"));

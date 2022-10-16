@@ -23,7 +23,7 @@ public abstract class JdbcCreateTest {
 	    	 query = "CREATE TABLE Account(Balance int);";
 	    	 try{stmt.executeUpdate(query);}catch(Exception e) {}
 	    	 
-	    	 query = "INSERT INTO Account VALUES (0);";
+	    	 query = "INSERT INTO Account VALUES (60850);";
 	    	 stmt.executeUpdate(query);
 	         
 	         
