@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 
 import servers.WebApp;
 
-public class AccountController implements WebApp{
+public class BankAccount implements WebApp{
 	private static final String DEPOSIT = "DEPOSIT";
 	private static final String EXIT = "EXIT";
 	
@@ -22,7 +22,7 @@ public class AccountController implements WebApp{
 		
 	public String getMethods() {
 		String response = "";
-		for(Field field : AccountController.class.getDeclaredFields()) {
+		for(Field field : BankAccount.class.getDeclaredFields()) {
 			response += field.getName().toString() + ",\n";
 		}
 		return response;

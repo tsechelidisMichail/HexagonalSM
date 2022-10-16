@@ -1,13 +1,13 @@
 package servers;
 
-import webApp.adapter.in.web.AccountController;
+import webApp.adapter.in.web.BankAccount;
 
 class TcpServer extends ServerThread{
 	private static final int PORT = 1233;
 	
 	//TODO: This webApp may be selected in future.
 	public TcpServer(int id) throws Exception {
-		super(id+PORT, new AccountController());
+		super(id+PORT, new BankAccount());
 	}
 
 	@Override
