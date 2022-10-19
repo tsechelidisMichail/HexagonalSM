@@ -13,7 +13,7 @@ class LoadAccountQuery {
 
 	public Account getAccount() {
 		Account account = null;
-	      try(Connection conn = DriverManager.getConnection(JdbcCreateTest.CONNECTION_URL, "root", "pass123");
+	      try(Connection conn = DriverManager.getConnection(JdbcCreateTest.CONNECTION_URL, JdbcCreateTest.USER, JdbcCreateTest.PASSWORD);
 	    		  Statement stmt = conn.createStatement();) {
 	    	 String query = "";
 	    	 query = "USE accounts;";

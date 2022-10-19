@@ -4,13 +4,16 @@ import java.sql.*;
 
 public abstract class JdbcCreateTest {
 	public static final String CONNECTION_URL = "jdbc:mysql://localhost:3306/";
+	public static final String USER = "root";
+	public static final String PASSWORD = "pass123";
+	
 	private JdbcCreateTest() {
 		
 	}
 	
 	protected static void createDb() {
 
-	      try(Connection conn = DriverManager.getConnection(CONNECTION_URL, "root", "pass123");
+	      try(Connection conn = DriverManager.getConnection(CONNECTION_URL, USER, PASSWORD);
 	    		  Statement stmt = conn.createStatement();) {
 	    	 String query = "";
 	    	 query = "CREATE DATABASE accounts;";
