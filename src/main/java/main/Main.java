@@ -8,5 +8,7 @@ public class Main {
 		JdbcCreateTest.createDb();
 		ServerManager.createServers();
 		ServerManager.terminateServers();
+		System.out.println("System exited.");
+		System.exit(0);
 	}
 }

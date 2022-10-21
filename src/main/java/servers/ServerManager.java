@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import servers.ServerThread.ServerAlreadyRunningException;
-
 public abstract class ServerManager {
 	private static final String TERMINATE = "TERMINATE";
 	private static final String TCP = "TCP";
@@ -18,18 +16,39 @@ public abstract class ServerManager {
 	}
 	
 	public static void createServers() {
-		String protocol = "";
-		while(!protocol.equals(TERMINATE)) {
-			protocol = getProtocol();
-			startServer(protocol);
+		while(true) {
+			
+			final int PORT = 1233;
+			final int serverID = servers.size() + 1 + PORT;
+			
+			String protocol = getProtocol();
+			
+			if(protocol.equals(TERMINATE)) {
+				System.out.println("Terminated");
+				break;
+			}else if(protocol.equals(TCP)){
+				startServer(new TcpServerThread(serverID));
+			}
 		}
 	}
 	
+	private static void startServer(ServerThread server) {
+		server.start();
+		servers.add(server);
+	}
+	
+	/*TODO: IMPORTANT
+	 * Socket Threading keeps on waiting for input even after everything is closed (when you use join() )
+	 * So we use stop, enforce closing everything at terminate() before using stop()
+	 * A normal useCase wouldn't want to terminate a server.
+	 * Even in mid-transaction it just ends at the CURRENT input submission of user.(if it exists).
+	 */
+	@SuppressWarnings("removal")
 	public static void terminateServers() {
 		for(ServerThread server : servers) {
 			server.terminate();
-		}
-		
+			server.stop();
+		}	
 	}
 	
 	private static String getProtocol() {
@@ -50,27 +69,6 @@ public abstract class ServerManager {
 			str.append(field.getName());
 		}
 		return str.toString().replace("servers", "");
-	}
-	
-	private static void startServer(String protocol) {
-		int serverID = servers.size() + 1;
-		ServerThread server = null;
-		try {
-			switch(protocol) {
-				case TCP:
-					server = new TcpServer(serverID);
-					break;
-				default:
-					System.out.println("Selected: " + protocol);
-					break;
-			}
-			server.start();
-			servers.add(server);
-		}catch (ServerAlreadyRunningException e) {
-			System.err.println("already running");
-		}catch(NullPointerException e) {
-			System.err.println("This Server option doesn't exist.");
-		}
 	}
 	
 

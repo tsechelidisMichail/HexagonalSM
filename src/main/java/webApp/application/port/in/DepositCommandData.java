@@ -9,7 +9,7 @@ public class DepositCommandData {
 		}catch(ArrayIndexOutOfBoundsException |NumberFormatException e) {
 			e.printStackTrace();
 		}
-		//TODO: Here we translate data
+		//Here we translate data
 		
 	}
 	
