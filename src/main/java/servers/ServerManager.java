@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public abstract class ServerManager {
 	private static final String TERMINATE = "TERMINATE";
 	private static final String TCP = "TCP";
-	private static final ArrayList<ServerThread> servers = new ArrayList<ServerThread>();
+	private static final ArrayList<ServerThread> servers = new ArrayList<>();
 	
 	private ServerManager() {
 		

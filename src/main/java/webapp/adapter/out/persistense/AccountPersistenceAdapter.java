@@ -1,8 +1,8 @@
-package webApp.adapter.out.persistense;
+package webapp.adapter.out.persistense;
 
-import webApp.application.port.out.LoadAccount;
-import webApp.application.port.out.UpdateAccount;
-import webApp.domain.Account;
+import webapp.application.port.out.LoadAccount;
+import webapp.application.port.out.UpdateAccount;
+import webapp.domain.Account;
 
 public class AccountPersistenceAdapter implements LoadAccount, UpdateAccount{
 	private LoadAccountQuery getAccountQuery = new LoadAccountQuery();

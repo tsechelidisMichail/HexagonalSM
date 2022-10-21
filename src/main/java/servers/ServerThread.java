@@ -16,7 +16,7 @@ abstract class ServerThread extends Thread{
 	protected abstract void terminateTransaction();
 	protected abstract void terminateConnection();
 	
-	protected ServerThread(int port, WebApp webApp){
+	protected ServerThread(WebApp webApp){
 		this.webApp = webApp;
 		terminated = false;
 	}

@@ -1,4 +1,4 @@
-package webApp.adapter.out.persistense;
+package webapp.adapter.out.persistense;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import main.JdbcCreateTest;
-import webApp.domain.Account;
+import webapp.domain.Account;
 
 class UpdateAccountQuery {
 

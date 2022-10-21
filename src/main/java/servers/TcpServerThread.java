@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import webApp.adapter.in.web.WebAppController;
+import webapp.adapter.in.web.WebAppController;
 
 class TcpServerThread extends ServerThread{
 	private static final String EXIT = "EXIT";
@@ -22,7 +22,7 @@ class TcpServerThread extends ServerThread{
 	
 	//This webApp may be selected in future.
 	public TcpServerThread(int port){	
-		super(port, new WebAppController());
+		super(new WebAppController());
 		
 		try {
 			connectionSocket = new ServerSocket(port);

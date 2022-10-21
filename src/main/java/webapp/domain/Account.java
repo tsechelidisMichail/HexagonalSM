@@ -1,4 +1,4 @@
-package webApp.domain;
+package webapp.domain;
 
 public class Account {
 	private int deposit;

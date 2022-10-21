@@ -1,8 +1,8 @@
-package webApp.adapter.in.web;
+package webapp.adapter.in.web;
 
-import webApp.application.port.in.DepositCommandData;
-import webApp.application.port.in.DepositUseCase;
-import webApp.application.service.DepositService;
+import webapp.application.port.in.DepositCommandData;
+import webapp.application.port.in.DepositUseCase;
+import webapp.application.service.DepositService;
 
 class DepositController {
 	private final DepositUseCase depositUseCase = new DepositService();

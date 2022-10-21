@@ -1,4 +1,4 @@
-package webApp.adapter.in.web;
+package webapp.adapter.in.web;
 
 import java.lang.reflect.Field;
 
@@ -23,7 +23,7 @@ public class WebAppController implements WebApp{
 	public String getMethods() {
 		StringBuilder str = new StringBuilder();
 		for(Field field : WebAppController.class.getDeclaredFields()) {
-			str.append(field.getName().toString() + ",\n");
+			str.append(field.getName() + ",\n");
 		}
 		return str.toString();
 	}

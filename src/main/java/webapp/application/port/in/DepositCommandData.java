@@ -1,4 +1,4 @@
-package webApp.application.port.in;
+package webapp.application.port.in;
 
 public class DepositCommandData {
 	private int depositMoney = 0;
