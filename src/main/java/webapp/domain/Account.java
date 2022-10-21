@@ -14,6 +14,14 @@ public class Account {
 		}
 		return false;
 	}
+	
+	public boolean withdraw(int data) {
+		if(data>=0 && data<=deposit) {
+			deposit -= data;
+			return true;
+		}
+		return false;
+	}
 
 	public int getDeposit() {
 		return deposit;

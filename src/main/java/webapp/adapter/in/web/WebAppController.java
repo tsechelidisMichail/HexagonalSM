@@ -6,13 +6,17 @@ import servers.WebApp;
 
 public class WebAppController implements WebApp{
 	private static final String DEPOSIT = "DEPOSIT";
+	private static final String WITHDRAW = "WITHDRAW";
 	private static final String EXIT = "EXIT";
 	
 	public String mapMethodController(String method, String[] data) {
 		switch(method) {
 			case DEPOSIT:
-				DepositController controller = new DepositController();
-				return controller.deposit(data);
+				DepositController depositController = new DepositController();
+				return depositController.deposit(data);
+			case WITHDRAW:
+				WithdrawController withdrawController = new WithdrawController();
+				return withdrawController.withdraw(data);
 			case EXIT:
 				return EXIT;
 			default:
