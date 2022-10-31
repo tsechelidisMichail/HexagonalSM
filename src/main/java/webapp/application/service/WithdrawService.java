@@ -10,21 +10,18 @@ import webapp.domain.Account;
 public class WithdrawService implements WithdrawUseCase{
 	private final LoadAccount loadAccount = new AccountPersistenceAdapter();
 	private final UpdateAccount updateAccount = new AccountPersistenceAdapter();
-	
-	private static Account account;
-	
 
 	@Override
 	public synchronized String withdraw(DepositCommandData commandData) {
 		int money = commandData.getDepositMoney();
 		
-		/*Here we test lock on static field, the query is executed when loadAccount() is invoked 
+		/*Here we test lock the entire singature/method, the query is executed when loadAccount() is invoked
 		*- not when the LoadAccount is created - .
 		*The lock/synchronize must be maintained until the function finishes,since we must send a request to updateAccount at db
 		*
 		*The lock is required in the first place since - compared to deposit - sequence in who withdraws money matters.
 		*/
-		account = loadAccount.loadAccount();
+		Account account = loadAccount.loadAccount();
 		
 		if (account.withdraw(money) && updateAccount.updateAccount(account)) {
 			int balanceResult = account.getDeposit();

@@ -10,7 +10,6 @@ import webapp.domain.Account;
 
 public class DepositService implements DepositUseCase{
 	private final LoadAccount loadAccount = new AccountPersistenceAdapter();
-	private final AccountLock accountLock = new NoOperationAccountLock();
 	private final UpdateAccount updateAccount = new AccountPersistenceAdapter();
 
 	@Override
@@ -18,14 +17,11 @@ public class DepositService implements DepositUseCase{
 		int money = commandData.getDepositMoney();
 		
 		Account account = loadAccount.loadAccount();
-		
-		accountLock.lockAccount(account);
+
 		if (account.deposit(money) && updateAccount.updateAccount(account)) {
 			int balanceResult = account.getDeposit();
-			accountLock.releaseAccount(account);
 			return "Success! " + balanceResult;
 		}
-		accountLock.releaseAccount(account);
 		return "failed";
 	}
 
