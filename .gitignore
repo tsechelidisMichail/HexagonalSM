@@ -28,3 +28,5 @@ hs_err_pid*
 /.settings/
 /shelf/
 /.idea/
+/out/
+/src/main/java/META-INF

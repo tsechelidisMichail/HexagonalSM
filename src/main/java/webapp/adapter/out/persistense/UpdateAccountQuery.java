@@ -17,7 +17,7 @@ class UpdateAccountQuery {
 	    	 query = "USE accounts;";
 	    	 stmt.executeUpdate(query);
 	    	 
-	    	 query = "UPDATE account SET Balance = "+ account.getDeposit() + " LIMIT 1;";
+	    	 query = "UPDATE Account SET Balance = "+ account.getDeposit() + " LIMIT 1;";
 	    	 stmt.executeUpdate(query);
 	    	 System.out.println("insert back deposit: " + account.getDeposit());
 	         return true;
