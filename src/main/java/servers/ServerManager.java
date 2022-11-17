@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public abstract class ServerManager {
 	private static final String TERMINATE = "TERMINATE";
 	private static final String TCP = "TCP";
+	private static final String RMI = "RMI";
 	private static final ArrayList<ServerThread> servers = new ArrayList<>();
 	
 	private ServerManager() {
@@ -16,11 +17,14 @@ public abstract class ServerManager {
 	}
 	
 	public static void createServers() {
-		while(true) {
-			
-			final int PORT = 1233;
-			final int serverID = servers.size() + 1 + PORT;
-			
+		final int PORT = 1233;
+
+		int serverID = servers.size() + 1 + PORT;
+
+		while(serverID<5000) {
+
+			serverID = servers.size() + 1 + PORT;
+
 			String protocol = getProtocol();
 			
 			if(protocol.equals(TERMINATE)) {
@@ -28,6 +32,9 @@ public abstract class ServerManager {
 				break;
 			}else if(protocol.equals(TCP)){
 				startServer(new TcpServerThread(serverID));
+			}
+			else if(protocol.equals(RMI)){
+				new ServerRmi();
 			}
 		}
 	}

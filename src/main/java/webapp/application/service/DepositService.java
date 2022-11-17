@@ -3,7 +3,6 @@ package webapp.application.service;
 import webapp.adapter.out.persistense.AccountPersistenceAdapter;
 import webapp.application.port.in.DepositCommandData;
 import webapp.application.port.in.DepositUseCase;
-import webapp.application.port.out.AccountLock;
 import webapp.application.port.out.LoadAccount;
 import webapp.application.port.out.UpdateAccount;
 import webapp.domain.Account;
